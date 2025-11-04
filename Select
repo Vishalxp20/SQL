@@ -1,1 +1,209 @@
+.
 
+📘 SQL SELECT Queries — Complete Guide
+
+This document explains the SQL SELECT statement and all related operations used to query, filter, and manipulate data in databases. It provides examples and explanations that are simple and human-readable for beginners and learners.
+
+🧩 What is a SELECT Query?
+
+The SELECT statement is used to retrieve data from a database.
+It allows you to choose which columns you want to display and from which table.
+
+Basic Syntax:
+SELECT column1, column2, ...
+FROM table_name;
+
+Example:
+SELECT name, age FROM students;
+
+
+✅ This retrieves the name and age columns from the students table.
+
+🎯 Common SELECT Query Operations
+1. SELECT DISTINCT
+
+Removes duplicate records and returns only unique values.
+
+SELECT DISTINCT city FROM customers;
+
+
+✅ Returns a list of unique cities.
+
+2. WHERE Clause
+
+Used to filter records based on a condition.
+
+SELECT * FROM employees
+WHERE salary > 50000;
+
+
+✅ Returns employees who earn more than 50,000.
+
+3. AND / OR Operators
+
+Used to combine multiple conditions.
+
+SELECT * FROM customers
+WHERE country = 'India' AND city = 'Delhi';
+
+
+✅ Customers from India and specifically from Delhi.
+
+4. ORDER BY
+
+Sorts the result in ascending (ASC) or descending (DESC) order.
+
+SELECT name, marks
+FROM students
+ORDER BY marks DESC;
+
+
+✅ Lists students sorted by marks from highest to lowest.
+
+5. LIMIT / TOP
+
+Limits the number of records in the output.
+
+SELECT * FROM products
+LIMIT 5;
+
+
+✅ Displays only the first 5 rows.
+
+6. IN / NOT IN
+
+Used to check if a value matches any value in a list.
+
+SELECT * FROM employees
+WHERE department IN ('HR', 'Sales');
+
+
+✅ Employees from HR or Sales departments.
+
+7. BETWEEN
+
+Filters data within a range (inclusive).
+
+SELECT * FROM orders
+WHERE price BETWEEN 1000 AND 5000;
+
+
+✅ Orders with price between 1000 and 5000.
+
+8. LIKE and Wildcards
+
+Used for pattern matching.
+
+Symbol	Meaning	Example	Matches
+%	any number of characters	'A%'	“A”, “Apple”, “Amazon”
+_	one character	'A_'	“An”, “At”
+SELECT * FROM products
+WHERE name LIKE 'S%';
+
+
+✅ Finds products starting with ‘S’.
+
+9. Aggregate Functions
+
+Perform calculations on data and return a single result.
+
+Function	Description
+COUNT()	Counts rows
+SUM()	Adds up numeric values
+AVG()	Calculates average
+MIN()	Finds minimum
+MAX()	Finds maximum
+
+Example:
+
+SELECT COUNT(*) AS total_orders, AVG(price) AS avg_price
+FROM orders;
+
+10. GROUP BY and HAVING
+
+Groups rows that have the same values and applies aggregate functions.
+
+SELECT department, COUNT(*) AS total
+FROM employees
+GROUP BY department
+HAVING COUNT(*) > 5;
+
+
+✅ Departments having more than 5 employees.
+
+11. JOIN Operations
+
+Used to combine data from multiple tables based on related columns.
+
+Join Type	Description
+INNER JOIN	Returns rows that have matching values in both tables
+LEFT JOIN	Returns all rows from the left table and matching rows from the right
+RIGHT JOIN	Returns all rows from the right table and matching rows from the left
+FULL JOIN	Returns all records when there is a match in either table
+
+Example:
+
+SELECT orders.order_id, customers.name
+FROM orders
+INNER JOIN customers
+ON orders.customer_id = customers.id;
+
+12. Subqueries
+
+A query inside another query.
+
+SELECT name
+FROM students
+WHERE marks > (SELECT AVG(marks) FROM students);
+
+
+✅ Finds students scoring above average marks.
+
+13. UNION and UNION ALL
+
+Combine results from multiple queries.
+
+SELECT city FROM customers_india
+UNION
+SELECT city FROM customers_usa;
+
+
+✅ Combines both queries and removes duplicates.
+
+14. ALTER, UPDATE, DELETE
+
+Although not part of SELECT, these are essential DML operations.
+
+-- Update
+UPDATE employees SET salary = 60000 WHERE id = 3;
+
+-- Delete
+DELETE FROM employees WHERE id = 10;
+
+📊 Example Practice Query
+SELECT author_id
+FROM views
+WHERE author_id = viewer_id
+GROUP BY author_id;
+
+
+✅ Returns distinct authors who viewed their own articles (from LeetCode Q1148 — Article Views I).
+
+💾 Summary
+Keyword	Purpose
+SELECT	Retrieve data
+WHERE	Filter data
+ORDER BY	Sort results
+GROUP BY	Group data
+HAVING	Filter groups
+DISTINCT	Remove duplicates
+JOIN	Combine tables
+🧠 Learn & Practice
+
+You can practice these SQL commands using:
+
+LeetCode Database Problems
+
+W3Schools SQL Try Editor
+
+MySQL Workbench
